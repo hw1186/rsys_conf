@@ -1,5 +1,8 @@
 #!/bin/bash
 
+sudo apt update
+sudo apt install -y rsyslog
+
 cat << EOF | sudo tee /etc/rsyslog.d/01-json-parser.conf
 template(name="json-template"
   type="list") {
