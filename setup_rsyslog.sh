@@ -24,5 +24,10 @@ cat << EOF | sudo tee /etc/rsyslog.d/60-fluentd.conf
 *.*							@@localhost:5140;json-template
 EOF
 
-sudo systemctl restart rsyslog
+sudo service rsyslog stop
 
+sudo mv /run/rsyslogd.pid /run/rsyslogd.pid.backup
+
+sudo service rsyslog start
+
+chmod +x setup_rsyslog.sh
