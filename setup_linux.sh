@@ -77,5 +77,3 @@ cat << EOF | sudo tee /etc/fluent/fluentd.conf
 EOF
 
 sudo systemctl restart fludentd
-
-chmod +x setup_linux.sh
