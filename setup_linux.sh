@@ -29,21 +29,16 @@ template(name="json-template"
 EOF
 
 cat << EOF | sudo tee /etc/rsyslog.d/60-fluentd.conf
-*.*							@@localhost:5140;json-template
+*.*	@@localhost:5140;json-template
 EOF
 
-sudo service rsyslog stop
-
-sudo mv /run/rsyslogd.pid /run/rsyslogd.pid.backup
-
-sudo service rsyslog start
-
-curl -fsSL https://toolbelt.treasuredata.com/sh/install-ubuntu-jammy-fluent-package5.sh | sh
+sudo systemctl restart rsyslog
 
 echo "========================================================"
 echo "Starting install Fluentd"
 echo "========================================================"
 
+curl -fsSL https://toolbelt.treasuredata.com/sh/install-ubuntu-jammy-fluent-package5.sh | sh
 sudo systemctl start fluentd.service
 
 echo "========================================================"
