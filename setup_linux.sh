@@ -39,7 +39,7 @@ echo "Starting install Fluentd"
 echo "========================================================"
 
 curl -fsSL https://toolbelt.treasuredata.com/sh/install-ubuntu-jammy-fluent-package5.sh | sh
-sudo systemctl start fluentd.service
+sudo systemctl start fluentd
 
 echo "========================================================"
 echo "setup Fluentd"
