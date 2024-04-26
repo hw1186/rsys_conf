@@ -1,5 +1,3 @@
-
-
 if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
     Start-Process powershell.exe -Verb RunAs -ArgumentList "-File",$MyInvocation.MyCommand.Path
     Exit
@@ -41,3 +39,10 @@ $newContent = @"
 "@
 
 Set-Content -Path $filePath -Value $newContent -Force
+
+sc.exe create fluent-bit binpath= '\"C:\Program Files\fluent-bit\bin\fluent-bit.exe\" -c \"C:\Program Files\fluent-bit\conf\fluent-bit.conf\"'
+
+sc.exe start fluent-bit
+
+sc.exe config fluent-bit start=auto
+
