@@ -60,7 +60,7 @@ cat << EOF | sudo tee /etc/fluent/fluentd.conf
 
 <match teiren.linux>
 	@type http
-	endpoint http://3.36.119.174:8088/linux_log
+	endpoint http://3.35.81.217:8088/linux_log
 	json_array true
 	<format>
 	  @type json
