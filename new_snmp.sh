@@ -8,8 +8,8 @@ echo "========================================================"
 
 sudo apt update
 sudo apt install -y rsyslog
-sudo apt install systemd
-sudo apt install curl
+sudo apt install systemd 
+sudo apt install curl 
 
 cat << EOF | sudo tee /etc/rsyslog.d/01-json-parser.conf
 template(name="json-template"
@@ -67,6 +67,28 @@ cat << EOF | sudo tee /etc/fluent/fluentd.conf
 	</format>
 	<buffer>
 	  flush_interval 10s
+	</buffer>
+</match>
+
+# SNMP 로그 수집 설정 추가
+<source>
+  @type udp # SNMP는 UDP 프로토콜을 사용
+  port 162 # SNMP의 기본 포트는 162
+  bind 0.0.0.0
+  tag teiren.snmp
+  <parse>
+    @type none # SNMP 메시지 형식은 다양할 수 있으니, 여기서는 파싱하지 않음
+  </parse>
+</source>
+
+<match teiren.snmp>
+	@type http
+	endpoint http://3.35.81.217:8088/snmp_log # SNMP 로그를 보낼 엔드포인트
+	<format>
+	  @type json # JSON 형식으로 로그 전송
+	</format>
+	<buffer>
+	  flush_interval 10s # 10초마다 버퍼의 로그를 전송
 	</buffer>
 </match>
 
