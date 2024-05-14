@@ -71,4 +71,4 @@ cat << EOF | sudo tee /etc/fluent/fluentd.conf
 </match>
 EOF
 
-sudo systemctl restart fludentd
+sudo systemctl restart fluentd
