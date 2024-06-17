@@ -24,6 +24,10 @@ template(name="json-template"
       constant(value="\",\"facility\":\"")    property(name="syslogfacility-text")
       constant(value="\",\"programname\":\"") property(name="programname")
       constant(value="\",\"procid\":\"")      property(name="procid")
+      constant(value="\",\"structured-data\":\"") property(name="structured-data")
+      constant(value="\",\"protocol-version\":\"") property(name="protocol-version")
+      constant(value="\",\"app-name\":\"")   property(name="app-name")
+      constant(value="\",\"timegenerated\":\"")     property(name="timegenerated")
     constant(value="\"}\n")
 }
 EOF
